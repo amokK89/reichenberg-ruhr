@@ -1,33 +1,53 @@
-# Deployment: Cloudflare Pages
+# Deployment: GitHub Pages + IONOS DNS
 
-## Erstmalige Einrichtung
+## Übersicht
 
-### 1. GitHub-Repo erstellen
-- Repository-Name: `reichenberg-ruhr`
-- Sichtbarkeit: Private (Domain-Code muss nicht öffentlich sein)
-- Dieses Verzeichnis pushen
+Hosting: **GitHub Pages** (kostenlos, HTTPS automatisch)
+DNS: **IONOS** (Domain reichenberg.ruhr, E-Mail bleibt unberührt)
+Repo: https://github.com/amokK89/reichenberg-ruhr
 
-### 2. Cloudflare Pages verknüpfen
-1. Cloudflare Dashboard → Pages → "Create a project"
-2. "Connect to Git" → GitHub-Repo `reichenberg-ruhr` auswählen
-3. Build-Einstellungen:
-   - **Build command:** `npm run build`
-   - **Build output directory:** `dist`
-   - **Node.js version:** 18 (oder 20)
-4. "Save and Deploy"
+---
 
-### 3. Domain konfigurieren
-In Cloudflare DNS für `reichenberg.ruhr`:
-- Alten XING-Redirect-Record löschen
-- Neuen CNAME-Record anlegen:
-  - Name: `@` (oder `reichenberg.ruhr`)
-  - Target: `reichenberg-ruhr.pages.dev`
-  - Proxy: **An** (oranges Wolken-Icon)
+## Einmalige Einrichtung
 
-HTTPS wird automatisch von Cloudflare bereitgestellt.
+### 1. GitHub Pages aktivieren
 
-### 4. E-Mail-Routing (optional)
-Cloudflare Dashboard → Email Routing → `dennis@reichenberg.ruhr` → Weiterleitung an Dennis' Postfach.
+Im GitHub-Repo:
+- Settings → Pages
+- Source: **GitHub Actions** auswählen (nicht "Deploy from a branch")
+- Speichern
+
+Der Deploy-Workflow (`.github/workflows/deploy.yml`) startet automatisch beim nächsten Push auf `master`.
+
+### 2. DNS bei IONOS konfigurieren
+
+Im IONOS-Kundencenter → Domains → reichenberg.ruhr → DNS:
+
+**Für den Apex (reichenberg.ruhr) — 4 A-Records:**
+
+| Typ | Name | Wert              | TTL  |
+|-----|------|-------------------|------|
+| A   | @    | 185.199.108.153   | 3600 |
+| A   | @    | 185.199.109.153   | 3600 |
+| A   | @    | 185.199.110.153   | 3600 |
+| A   | @    | 185.199.111.153   | 3600 |
+
+**Für www (optional):**
+
+| Typ   | Name | Wert               | TTL  |
+|-------|------|--------------------|------|
+| CNAME | www  | amokK89.github.io  | 3600 |
+
+> **Wichtig:** Bestehende MX-Records für E-Mail NICHT anfassen.
+> Den alten XING-Redirect-Record löschen (falls als A- oder CNAME-Record vorhanden).
+
+### 3. Custom Domain in GitHub Pages eintragen
+
+Im GitHub-Repo → Settings → Pages → Custom domain:
+- `reichenberg.ruhr` eintragen → Save
+- "Enforce HTTPS" aktivieren (erscheint nach DNS-Propagation, ~30 min)
+
+Die Datei `public/CNAME` im Repo enthält bereits `reichenberg.ruhr` und verhindert, dass GitHub die Domain bei jedem Deploy zurücksetzt.
 
 ---
 
@@ -35,11 +55,11 @@ Cloudflare Dashboard → Email Routing → `dennis@reichenberg.ruhr` → Weiterl
 
 ```bash
 git add .
-git commit -m "Update: [Beschreibung der Änderung]"
+git commit -m "Update: [Beschreibung]"
 git push
 ```
 
-Cloudflare Pages deployt automatisch nach jedem Push auf `main`.
+GitHub Actions deployt automatisch nach jedem Push auf `master`.
 
 ---
 
@@ -47,14 +67,15 @@ Cloudflare Pages deployt automatisch nach jedem Push auf `main`.
 
 1. https://search.google.com/search-console → "Property hinzufügen"
 2. Domain-Property: `reichenberg.ruhr`
-3. TXT-Verifikationsrecord in Cloudflare DNS eintragen
+3. TXT-Verifikationsrecord in IONOS DNS eintragen (Google gibt den Wert vor)
 4. Nach Verifikation: Sitemap einreichen → `https://reichenberg.ruhr/sitemap-index.xml`
 
 ---
 
-## Inhalte aktualisieren (Checkliste vor Go-Live)
+## Inhalte aktualisieren (Checkliste)
 
-- [ ] `src/components/Hero.astro` — `hasProfileImage` auf `true` setzen, sobald `public/profile.jpg` vorhanden
-- [ ] `src/components/TechStack.astro` — Platzhalter-Stack durch Dennis' echten Stack ersetzen
-- [ ] `src/pages/index.astro` — `og:image` Meta-Tag mit Profilbild-URL befüllen
-- [ ] `public/profile.jpg` — Profilbild (Dennis liefert Foto) einpflegen
+- [x] `public/profile.jpg` — Profilbild vorhanden
+- [x] `src/components/Hero.astro` — `hasProfileImage` auf `true`
+- [x] `src/pages/index.astro` — `og:image` gesetzt
+- [ ] `src/components/TechStack.astro` — Platzhalter durch Dennis' echten Stack ersetzen
+- [ ] Bio-Text von Dennis bestätigen lassen
