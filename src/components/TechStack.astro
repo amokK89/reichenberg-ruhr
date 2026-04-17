@@ -1,48 +1,58 @@
 ---
-// TechStack.astro — Skills and technology grid
-// TODO: Replace placeholder items with Dennis's actual stack once confirmed
-
 interface TechItem {
   name: string;
-  icon: string; // devicon class name
-  category: 'language' | 'framework' | 'database' | 'tool';
+  icon?: string;
+  category: 'language' | 'framework' | 'database' | 'tool' | 'ai';
 }
 
-// PLACEHOLDER — replace with Dennis's actual tech stack
 const techItems: TechItem[] = [
-  // Languages (examples — to be confirmed)
-  { name: 'Java', icon: 'devicon-java-plain', category: 'language' },
-  { name: 'JavaScript', icon: 'devicon-javascript-plain', category: 'language' },
-  { name: 'TypeScript', icon: 'devicon-typescript-plain', category: 'language' },
-  { name: 'SQL', icon: 'devicon-mysql-plain', category: 'language' },
-  // Frameworks (examples — to be confirmed)
-  { name: 'Spring', icon: 'devicon-spring-plain', category: 'framework' },
-  { name: 'React', icon: 'devicon-react-original', category: 'framework' },
-  // Databases (examples — to be confirmed)
-  { name: 'PostgreSQL', icon: 'devicon-postgresql-plain', category: 'database' },
-  { name: 'MySQL', icon: 'devicon-mysql-original', category: 'database' },
-  // Tools (examples — to be confirmed)
+  // Sprachen
+  { name: 'Delphi', category: 'language' },
+  { name: 'Python', icon: 'devicon-python-plain', category: 'language' },
+  { name: 'C#', icon: 'devicon-csharp-plain', category: 'language' },
+  { name: 'SQL', category: 'language' },
+
+  // Frameworks & Bibliotheken
+  { name: 'DevExpress', category: 'framework' },
+  { name: 'UniDAC', category: 'framework' },
+  { name: 'REST APIs', category: 'framework' },
+  { name: 'Selenium', icon: 'devicon-selenium-original', category: 'framework' },
+  { name: 'BeautifulSoup', category: 'framework' },
+
+  // Datenbanken
+  { name: 'Oracle 19c', icon: 'devicon-oracle-original', category: 'database' },
+  { name: 'SQLite', icon: 'devicon-sqlite-plain', category: 'database' },
+  { name: 'Firebird', category: 'database' },
+
+  // Tools
   { name: 'Git', icon: 'devicon-git-plain', category: 'tool' },
   { name: 'Docker', icon: 'devicon-docker-plain', category: 'tool' },
-  { name: 'Linux', icon: 'devicon-linux-plain', category: 'tool' },
-  { name: 'VS Code', icon: 'devicon-vscode-plain', category: 'tool' },
+  { name: 'Visual Studio', icon: 'devicon-visualstudio-plain', category: 'tool' },
+  { name: 'PyCharm', icon: 'devicon-pycharm-plain', category: 'tool' },
+  { name: 'Windows', icon: 'devicon-windows8-original', category: 'tool' },
+
+  // KI & Selfhosted
+  { name: 'Ollama', category: 'ai' },
+  { name: 'vLLM', category: 'ai' },
+  { name: 'Open WebUI', category: 'ai' },
+  { name: 'Selfhosted KI', category: 'ai' },
 ];
 
 const categories = [
   { key: 'language', label: 'Sprachen' },
-  { key: 'framework', label: 'Frameworks' },
+  { key: 'framework', label: 'Frameworks & Bibliotheken' },
   { key: 'database', label: 'Datenbanken' },
-  { key: 'tool', label: 'Tools' },
+  { key: 'tool', label: 'Tools & Umgebung' },
+  { key: 'ai', label: 'KI & Infrastruktur' },
 ] as const;
 ---
 
-<!-- devicons CDN -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" />
 
 <section id="technologien">
   <div class="container">
     <h2 class="section-title">Technologien</h2>
-    <p class="section-subtitle">Womit ich täglich arbeite</p>
+    <p class="section-subtitle">Womit ich arbeite</p>
 
     <div class="tech-categories">
       {categories.map(cat => {
@@ -54,7 +64,7 @@ const categories = [
             <div class="tech-grid">
               {items.map(item => (
                 <div class="tech-item">
-                  <i class={`${item.icon} colored`}></i>
+                  {item.icon && <i class={`${item.icon} colored`}></i>}
                   <span>{item.name}</span>
                 </div>
               ))}
