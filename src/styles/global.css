@@ -128,6 +128,26 @@ hr.section-divider {
   margin: 0;
 }
 
+/* ---- Scroll Animations ---- */
+@media (prefers-reduced-motion: no-preference) {
+  #ueber-mich,
+  #technologien,
+  #projekte,
+  #kontakt {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+
+  #ueber-mich.is-visible,
+  #technologien.is-visible,
+  #projekte.is-visible,
+  #kontakt.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ---- Responsive ---- */
 @media (max-width: 640px) {
   :root {
