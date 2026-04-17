@@ -24,8 +24,10 @@ const url = 'https://reichenberg.ruhr/';
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content="Dennis Reichenberg" />
+    <meta name="keywords" content="Dennis Reichenberg, Softwareentwickler, Software Developer, Ruhrgebiet, NRW, Delphi, Python, C#, Backend Entwicklung" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href={url} />
+    <link rel="me" href="https://github.com/dennisreichenberg" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -43,36 +45,60 @@ const url = 'https://reichenberg.ruhr/';
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
 
-    <!-- Structured Data (Person) -->
+    <!-- Structured Data -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Dennis Reichenberg",
-        "jobTitle": "Softwareentwickler",
-        "url": "https://reichenberg.ruhr",
-        "email": "dennis@reichenberg.ruhr",
-        "address": {
-          "@type": "PostalAddress",
-          "addressRegion": "Nordrhein-Westfalen",
-          "addressCountry": "DE"
-        },
-        "sameAs": [
-          "https://www.xing.com/profile/Dennis_Reichenberg4",
-          "mailto:dennis@reichenberg.ruhr"
-        ],
-        "knowsAbout": [
-          "Delphi", "Python", "C#", "SQL",
-          "DevExpress", "REST APIs", "Selenium", "BeautifulSoup",
-          "Oracle", "SQLite", "Firebird",
-          "Git", "Docker",
-          "Ollama", "vLLM", "Selfhosted AI"
-        ],
-        "worksFor": {
-          "@type": "Organization",
-          "name": "VU.SOLUTIONS GmbH & Co. KG",
-          "url": "https://vu-solutions.de"
-        }
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://reichenberg.ruhr/#website",
+            "url": "https://reichenberg.ruhr",
+            "name": "Dennis Reichenberg",
+            "description": "Persönliche Website von Dennis Reichenberg — Softwareentwickler im Ruhrgebiet",
+            "inLanguage": "de-DE",
+            "publisher": {
+              "@id": "https://reichenberg.ruhr/#person"
+            }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://reichenberg.ruhr/#person",
+            "name": "Dennis Reichenberg",
+            "givenName": "Dennis",
+            "familyName": "Reichenberg",
+            "jobTitle": "Softwareentwickler",
+            "description": "Software Developer aus dem Ruhrgebiet mit 13+ Jahren Erfahrung in Backend-Entwicklung mit Delphi, Python und C#.",
+            "url": "https://reichenberg.ruhr",
+            "email": "dennis@reichenberg.ruhr",
+            "image": "https://reichenberg.ruhr/profile.jpg",
+            "nationality": {
+              "@type": "Country",
+              "name": "Germany"
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "addressRegion": "Nordrhein-Westfalen",
+              "addressCountry": "DE"
+            },
+            "sameAs": [
+              "https://www.xing.com/profile/Dennis_Reichenberg4",
+              "https://github.com/dennisreichenberg"
+            ],
+            "knowsAbout": [
+              "Delphi", "Python", "C#", "SQL",
+              "DevExpress", "REST APIs", "Selenium", "BeautifulSoup",
+              "Oracle", "SQLite", "Firebird",
+              "Git", "Docker",
+              "Ollama", "vLLM", "Selfhosted AI"
+            ],
+            "worksFor": {
+              "@type": "Organization",
+              "name": "VU.SOLUTIONS GmbH & Co. KG",
+              "url": "https://vu-solutions.de"
+            }
+          }
+        ]
       }
     </script>
 
