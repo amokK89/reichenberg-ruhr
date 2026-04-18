@@ -8,6 +8,8 @@ const year = new Date().getFullYear();
       &copy; {year} Dennis Reichenberg · Ruhrgebiet, NRW
     </p>
     <p class="footer-links">
+      <a href="/impressum">Impressum</a>
+      <span class="footer-sep">&middot;</span>
       <a href="mailto:dennis@reichenberg.ruhr">dennis@reichenberg.ruhr</a>
     </p>
   </div>
@@ -32,6 +34,19 @@ const year = new Date().getFullYear();
   .footer-links {
     font-size: 0.85rem;
     color: var(--color-text-muted);
+  }
+
+  .footer-links a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+
+  .footer-links a:hover {
+    color: var(--color-accent);
+  }
+
+  .footer-sep {
+    margin: 0 0.4rem;
   }
 
   @media (max-width: 480px) {

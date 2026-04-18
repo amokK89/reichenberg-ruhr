@@ -1,0 +1,182 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+const title = 'Impressum – Dennis Reichenberg';
+const description = 'Impressum und rechtliche Angaben gemaess Paragraph 5 TMG fuer die Website von Dennis Reichenberg.';
+const url = 'https://reichenberg.ruhr/impressum';
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Dennis Reichenberg" />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href={url} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content="de_DE" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  </head>
+
+  <body>
+    <Nav />
+    <main>
+      <section id="impressum" class="impressum-section">
+        <div class="container">
+          <h1 class="section-title">Impressum</h1>
+          <p class="section-subtitle">Angaben gemaess &sect; 5 TMG</p>
+
+          <div class="impressum-content">
+            <h2>Verantwortlicher</h2>
+            <p>
+              <strong>Dennis Reichenberg</strong><br />
+              [Strasse und Hausnummer]<br />
+              [PLZ] [Ort]<br />
+              Deutschland
+            </p>
+
+            <h2>Kontakt</h2>
+            <p>
+              E-Mail: <a href="mailto:dennis@reichenberg.ruhr">dennis@reichenberg.ruhr</a>
+            </p>
+
+            <h2>Berufsbezeichnung</h2>
+            <p>Softwareentwickler / Software Developer</p>
+
+            <h2>Umsatzsteuer</h2>
+            <p>
+              Angaben gemaess &sect; 27 a Umsatzsteuergesetz:<br />
+              <em>Entfaellt, sofern keine USt-IdNr. vorhanden.</em>
+            </p>
+
+            <hr class="impressum-divider" />
+
+            <h2>Haftungsausschluss</h2>
+
+            <h3>Haftung fuer Inhalte</h3>
+            <p>
+              Als Diensteanbieter bin ich gemaess &sect; 7 Abs. 1 TMG fuer eigene Inhalte auf dieser
+              Website nach den allgemeinen Gesetzen verantwortlich. Eine diesbezuegliche Haftung ist
+              jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung moeglich.
+              Bei Bekanntwerden entsprechender Rechtsverletzungen werde ich diese Inhalte umgehend entfernen.
+            </p>
+
+            <h3>Haftung fuer Links</h3>
+            <p>
+              Diese Website enthaelt Links zu externen Websites Dritter, auf deren Inhalte ich keinen
+              Einfluss habe. Fuer die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter
+              oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der
+              Verlinkung auf moegliche Rechtsverstoeße ueberprueft. Rechtswidrige Inhalte waren zum
+              Zeitpunkt der Verlinkung nicht erkennbar.
+            </p>
+
+            <h3>Urheberrecht</h3>
+            <p>
+              Die durch mich erstellten Inhalte und Werke auf dieser Website unterliegen dem deutschen
+              Urheberrecht. Downloads und Kopien dieser Seite sind nur fuer den privaten, nicht
+              kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht von mir
+              erstellt wurden, werden die Urheberrechte Dritter beachtet.
+            </p>
+
+            <hr class="impressum-divider" />
+
+            <h2>Imprint (English)</h2>
+            <p>
+              <strong>Dennis Reichenberg</strong><br />
+              [Street and Number]<br />
+              [ZIP] [City]<br />
+              Germany
+            </p>
+            <p>
+              Contact: <a href="mailto:dennis@reichenberg.ruhr">dennis@reichenberg.ruhr</a>
+            </p>
+            <p>
+              <strong>Professional title:</strong> Software Developer
+            </p>
+            <p>
+              Liability for content, links, and copyright per German law (TMG).
+              This imprint does not replace individual legal advice.
+            </p>
+
+            <p class="impressum-note">
+              <em>Hinweis: Dieses Impressum ersetzt keine individuelle Rechtsberatung.</em>
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .impressum-section {
+    padding: 4rem 0 6rem;
+    min-height: calc(100vh - 200px);
+  }
+
+  .impressum-content {
+    max-width: 680px;
+    margin-top: 3rem;
+  }
+
+  .impressum-content h2 {
+    color: #f1f5f9;
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .impressum-content h3 {
+    color: #cbd5e1;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .impressum-content p {
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .impressum-content a {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .impressum-content a:hover {
+    text-decoration: underline;
+  }
+
+  .impressum-divider {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: 2.5rem 0;
+  }
+
+  .impressum-note {
+    margin-top: 2rem;
+    font-size: 0.85rem !important;
+    color: var(--color-text-muted);
+    opacity: 0.7;
+  }
+</style>
